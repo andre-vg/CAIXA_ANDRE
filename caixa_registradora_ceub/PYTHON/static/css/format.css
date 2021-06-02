@@ -67,6 +67,7 @@ img {
     height: 700px;
     position: relative;
     border-radius: 30px;
+    padding: 50px;
 
 }
 
@@ -178,13 +179,13 @@ input[type=submit] {
   background-color: green;
 }
 
-.nme_funcionario {
+.nme_funcionario pre{
          font-family: "Montserrat";
          text-align: left;
          font-size: 1.5em;
          color: white;
-         padding-left: 10px;
-         padding-top: 60px;
+         padding-left: 40px;
+         padding-top: 0px;
 
 }
 .right .btn_valor_total{

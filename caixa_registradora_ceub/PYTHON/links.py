@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 @app.route('/login', methods=['POST'])
 def login():
+    global usuario
     usuario = request.form.get('username', '')
     senha = request.form.get('password', '')
     print(usuario)
@@ -78,7 +79,7 @@ def incluir():
 def pagar():
     data = str(datetime.now())
 
-    return render_template('pagar.html', data=data)
+    return render_template('pagar.html', nome_funcionario=usuario, data=data)
 
 
 app.run(debug=True)

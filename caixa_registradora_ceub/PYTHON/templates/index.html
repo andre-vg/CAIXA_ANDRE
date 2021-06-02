@@ -24,36 +24,11 @@
       </div>
     </div>
 
-
+<div class = "nme_funcionario"><pre> Logado como: {{ nome_funcionario | safe }}            <a href="/">Logout</a></pre>
+          </div>
 
     <div class="row">
-        <div class="column left">
-        <h2>Informações do Cliente</h2>
-         <form action="/incluir/" method="post">
-           <p>
-               Nome:
-               <input type="text" name="nome_cliente" placeholder="Nome do cliente..."/>
-           </p>
-           <p>
-               Endereço:
-               <input type="text" name="endereco_cliente" placeholder="Endereço do cliente..."/>
-           </p>
-           <p>
-               Número:
-               <input type="text" name="numero_cliente" placeholder="Número do cliente..."/>
-           </p>
-           <p>
-               CPF:
-               <input type="text" name="cpf_cliente" placeholder="CPF do cliente..."/>
-           </p>
-           <p>
-               <input type="submit" value="Salvar"/>
-           </p>
-       </form>
-          <div class = "nme_funcionario"><p> Logado como: {{ nome_funcionario | safe }}</p>
-          </div>
-          <a href="/">Logout</a>
-      </div>
+
 
 
       <div class="column middle">
