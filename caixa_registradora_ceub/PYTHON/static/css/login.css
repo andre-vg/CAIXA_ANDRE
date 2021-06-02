@@ -1,0 +1,43 @@
+Body {
+  font-family: montserrat, Helvetica, sans-serif;
+  background-color: lightgreen;
+
+
+}
+button {
+       background-color: #4CAF50;
+       width: 100%;
+        color: black;
+        padding: 15px;
+        margin: 10px 0px;
+        border: none;
+        cursor: pointer;
+         }
+ form {
+        border: 3px solid #000000;
+    }
+ input[type=text], input[type=password] {
+        width: 100%;
+        margin: 8px 0;
+        padding: 12px 20px;
+        display: inline-block;
+        border: 2px solid black;
+        box-sizing: border-box;
+    }
+ button:hover {
+        opacity: 0.7;
+
+    }
+
+
+ .container {
+        padding: 25px;
+        background-color: lightgrey;
+
+    }
+h1{
+    font-size: 50px;
+}
+p{
+        color: red;
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<link href="../static/css/login.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/png" href="../static/starbucks1.png">
+<meta charset="UTF-8">
+<title> Login </title>
+</head>
+<body>
+    <center> <h1> Login de Funcionário </h1> </center>
+    <form action="/login" method="post">
+        <div class="container">
+            <label>Usuário : </label>
+            <input type="text" placeholder="Nome de Usuário" name="username" value autocomplete="off" required>
+            <label>Senha : </label>
+            <input type="password" placeholder="Senha" name="password" required>
+            <button type="submit">Entrar</button>
+        </div>
+    </form>
+</body>
+</html>

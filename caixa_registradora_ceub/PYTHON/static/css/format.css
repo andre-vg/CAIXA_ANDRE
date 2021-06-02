@@ -1,0 +1,204 @@
+.cabecalho {
+         font-family: "Montserrat";
+         text-align: left;
+         font-size: 1.5em;
+         border-style: solid;
+         border-width: 2px;
+         margin-top: 40px;
+         margin-right: 40px;
+         margin-left: 40px;
+         padding: 20px;
+         background-color: white;
+
+
+}
+
+span{
+        font-family: "Montserrat";
+        font-size: 1.2em;
+}
+body {
+        height: 1080px;
+        background: linear-gradient(lightgreen, black);
+}
+
+img {
+        width: 10%;
+        height: auto;
+        background:transparent url(starbucks.png);
+}
+
+.col-sm h1{
+        text-shadow: 2px 2px 5px green;
+}
+.column {
+  float: left;
+  padding: 10px;
+  height: 400px;
+  border-style: solid;
+  border-width: 2px;
+  margin-top: 100px;
+  margin-right: 30px;
+  margin-left: 30px;
+  background-color: white;
+/* Should be removed. Only for demonstration */
+}
+
+.right {
+    position:relative;
+    width: 30%;
+    border-radius: 30px;
+    background-color: #f2f2f2;
+    padding: 10px;
+    height: 700px;
+}
+
+.left{
+    position: relative;
+    width: 20%;
+    border-radius: 30px;
+    padding: 10px;
+    height: 400px;
+
+}
+
+.middle {
+    width: 40%;
+    height: 700px;
+    position: relative;
+    border-radius: 30px;
+
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.left h2{
+        font-family: "Montserrat";
+        text-align: left;
+        font-size: 2em;
+}
+
+.middle h2{
+        font-family: "Montserrat";
+        text-align: center;
+        font-size: 2em;
+}
+
+.right h2{
+        font-family: "Montserrat";
+        text-align: center;
+        font-size: 2em;
+}
+
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.left form {
+    position: relative;
+  border-radius: 5px;
+  background-color: lightgrey;
+  padding-bottom: 1px;
+  height: 300px;
+
+}
+.left a{
+        font-family: "Montserrat";
+        font-size: 1em;
+        padding-left: 10px;
+}
+
+.middle .espresso img {
+    position: absolute;
+    top: 10%;
+    left: 0%;
+
+}
+.middle .espresso .qtd{
+        position: absolute;
+        top: 20%;
+        text-align: center;
+        width: 10%;
+
+}
+
+.middle .espresso .btn_espresso {
+  position: absolute;
+  top: 20%;
+  left: 6%;
+  background-color: #555;
+  opacity: 0.8;
+  color: white;
+  font-size: 16px;
+  padding: 10px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  text-align: left;
+}
+
+.espresso .btn:hover {
+  background-color: green;
+}
+
+.middle .torta img {
+    position: absolute;
+    top: 2%;
+    left: 35%;
+
+}
+
+.middle .torta .btn_torta {
+  position: absolute;
+  top: 20%;
+  left: 42%;
+  background-color: #555;
+  opacity: 0.8;
+  color: white;
+  font-size: 16px;
+  padding: 10px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  text-align: left;
+}
+
+.espresso .btn:hover {
+  background-color: green;
+}
+
+.nme_funcionario {
+         font-family: "Montserrat";
+         text-align: left;
+         font-size: 1.5em;
+         color: white;
+         padding-left: 10px;
+         padding-top: 60px;
+
+}
+.right .btn_valor_total{
+    position: absolute;
+    top: 90%;
+    left: 3%;
+}
+.right p{
+    position: absolute;
+    top: 90%;
+    left: 20%;
+}
+.right .btn_cadastra{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+}
