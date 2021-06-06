@@ -55,10 +55,11 @@ img {
 
 .left{
     position: relative;
-    width: 20%;
+    width: 50%;
     border-radius: 30px;
-    padding: 10px;
-    height: 400px;
+    padding-left: 10px;
+    padding-top: 10px;
+    height: 700px;
 
 }
 
@@ -67,15 +68,18 @@ img {
     height: 700px;
     position: relative;
     border-radius: 30px;
-    padding: 50px;
+    padding-left: 50px;
+    padding-top: 10px;
+
 
 }
 
-.row:after {
+.:after {
   content: "";
   display: table;
   clear: both;
 }
+
 
 .left h2{
         font-family: "Montserrat";
@@ -109,7 +113,6 @@ input[type=submit] {
 .left form {
     position: relative;
   border-radius: 5px;
-  background-color: lightgrey;
   padding-bottom: 1px;
   height: 300px;
 
@@ -202,4 +205,9 @@ input[type=submit] {
     position: absolute;
     top: 90%;
     left: 50%;
+}
+
+.right table{
+        border-spacing: 20px;
+        border-collapse: separate;
 }

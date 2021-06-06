@@ -33,18 +33,14 @@
 
       <div class="column middle">
         <h2>Selecione os produtos</h2>
-        <div class="espresso">
-            <button class="btn_espresso" onclick="addItemEspresso()" id = "espresso" data-valor= "2" value = "Café Espresso">Café Espresso $2</button>
-
-        </div>
-          <div class="qtd">
-                    <input type="number" name="qtd_espresso" id="qtd_espresso" value="0">
-            </div>
-
-        <div class="torta">
-            <img src="static/torta.png" alt="torta" style="width:25%">
-            <button class="btn_torta" onclick="addItemTorta(); PrintTotal();" id = "torta" data-valor= "5" value = "Torta">Torta $5</button>
-        </div>
+        <form action = "/pagar" id="prod" method="post">
+            <input type="number" name="qtd_espresso" id="qtd_espresso" value="0">
+            <input type="number" name="qtd_torta" id="qtd_torta" value="0">
+            <input type="number" name="qtd_agua" id="qtd_agua" value="0">
+            <p>
+                <button class="pagar" type="submit" id = "btn_pagar">PAGAR</button>
+            </p>
+        </form>
       </div>
 
       <div class="column right">
