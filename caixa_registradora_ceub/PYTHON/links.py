@@ -23,7 +23,7 @@ def login():
 
     cs = cnx.cursor(buffered=True)
 
-    sql = "SELECT nme_funcionario, username, senha FROM tb_funcionario where" \
+    sql = "SELECT idt_funcionario, nme_funcionario, username, senha FROM tb_funcionario where" \
           " username = %s and senha = %s; "
 
     cs.execute(sql, (usuario, senha))
@@ -34,8 +34,10 @@ def login():
     cnx.close()
 
     if dados is not None:
+        global idt_funcionario
+        idt_funcionario = dados[0]
         global nome_funcionario
-        nome_funcionario = dados[0]
+        nome_funcionario = dados[1]
         return render_template('index.html', nome_funcionario=nome_funcionario)
     else:
         return render_template('naoencontrado.html')
@@ -60,9 +62,9 @@ def incluir():
     mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
     comando = "INSERT INTO tb_cliente(nme_cliente, endereco_cliente, qtd_token, CPF) VALUES (%s, %s, %s, %s);"
     if mysql.executar(comando, [nme, end, token, cpf]):
-        msg = "Cliente " + nme + " cadastrada com sucesso!"
+        msg = "Cliente " + nme + " cadastrado(a) com sucesso!"
     else:
-        msg = "Falha na inclusão de pessoa."
+        msg = "Falha na inclusão do cliente."
 
     return msg
 
@@ -70,13 +72,18 @@ def incluir():
 def pagar():
     data = str(datetime.now())
 
-    
+    global espresso, vlr_espresso
+    global torta, vlr_torta
+    global agua, vlr_agua
+
     espresso=request.form['qtd_espresso']
     torta=request.form['qtd_torta']
     agua=request.form['qtd_agua']
     vlr_espresso=int(espresso) * 2.00
     vlr_torta=int(torta) * 5.00
     vlr_agua=int(agua) * 1.00
+
+
 
     
 
@@ -96,6 +103,7 @@ def buscar():
   comando = "SELECT * FROM tb_cliente WHERE CPF LIKE CONCAT('%', %s, '%') ORDER BY CPF;"
   cs=mysql.consultar(comando, [parte])
   print(cs)
+  global dados
   dados = cs.fetchone()
   if dados == None:
       saida = ""
@@ -103,6 +111,44 @@ def buscar():
       saida = str(dados[0]) + ',' + dados[1] + ',' + dados[2] + ',' + str(dados[3]) + ',' + dados[4]
 
   return saida
+
+
+@app.route('/sucesso')
+def teste():
+    data = str(datetime.now())
+    idt_cliente=dados[0]
+    nme=dados[1]
+    end=dados[2]
+    token=dados[3]
+    cpf=dados[4]
+
+    print (nme, end, token, cpf)
+    print (espresso, vlr_espresso, torta, vlr_torta)
+    vlr_total= vlr_espresso + vlr_torta + vlr_agua
+    vlr_token=(int(vlr_total)/15)*3
+
+    idt_espresso=1
+    idt_torta=2
+    idt_agua=3
+
+    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    comando = "INSERT INTO tb_pedido (cod_funcionario, cod_cliente, DataHora, vlr_total, vlr_total_token) " \
+              "VALUES (%s, %s, current_timestamp, %s, %s);"
+    mysql.executar(comando, [idt_funcionario, idt_cliente, vlr_total, vlr_token])
+
+    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+              "VALUES (LAST_INSERT_ID(), %s, %s);"
+    mysql.executar(comando, [idt_espresso, espresso])
+
+    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+              "VALUES (LAST_INSERT_ID(), %s, %s);"
+    mysql.executar(comando, [idt_torta, torta])
+
+    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+              "VALUES (LAST_INSERT_ID(), %s, %s);"
+    mysql.executar(comando, [idt_agua, agua])
+
+    return render_template('sucesso.html', data=data)
 
 
 app.run(debug=True)
