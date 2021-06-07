@@ -9,7 +9,9 @@ app = Flask(__name__)
 
 @app.route('/login', methods=['POST'])
 def login():
+
     global usuario
+    global senha
     usuario = request.form.get('username', '')
     senha = request.form.get('password', '')
     print(usuario)
@@ -132,6 +134,8 @@ def teste():
     idt_agua=3
 
     mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
+    mysql.executar(comando, [])
     comando = "INSERT INTO tb_pedido (cod_funcionario, cod_cliente, DataHora, vlr_total, vlr_total_token) " \
               "VALUES (%s, %s, current_timestamp, %s, %s);"
     mysql.executar(comando, [idt_funcionario, idt_cliente, vlr_total, vlr_token])

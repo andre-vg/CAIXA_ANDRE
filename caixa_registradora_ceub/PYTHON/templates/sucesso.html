@@ -5,11 +5,7 @@
     <link rel="icon" type="image/png" href="../static/starbucks1.png">
     <link href="../static/css/pagar.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <title>Title</title>
+    <title>Compra Realizada!</title>
 </head>
 <body>
     <div class="cabecalho">
@@ -28,7 +24,7 @@
     </div>
 
 <div class = "nme_funcionario"><pre> Logado como: {{ nome_funcionario | safe }}            <a href="/">Logout</a></pre>
-          </div>
+</div>
 
       <div class="column central">
         <h1>Compra Realizada com sucesso!</h1>
@@ -36,7 +32,20 @@
         <p>Nome do Cliente {{nme | safe }}</p>
         <p>Nome do Funcionário: {{nome_funcionario | safe }}</p>
         <p>Valor da compra: R${{vlr_total | safe }}</p>
+          <button onclick="voltaduas()">Nova Compra</button>
+      </div>
 
-    </div>
+<script type = "text/javascript" src="static/js/hora.js"></script>
+    <script>
+        var dt = new Date();
+        document.getElementById("datetime").innerHTML = (("0"+(dt.getDate())).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear());</script>
+    <script>
+        var dt = new Date();
+        document.getElementById("hora").innerHTML = dt.toLocaleTimeString();</script>
+<script>
+function voltaduas() {
+  window.history.go(-2);
+}
+</script>
 </body>
 </html>
