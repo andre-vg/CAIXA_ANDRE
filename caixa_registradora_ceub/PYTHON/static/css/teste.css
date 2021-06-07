@@ -21,7 +21,8 @@ body{
 	height: auto;
     background:transparent url("https://logosmarcas.net/wp-content/uploads/2020/09/Starbucks-Logo.png");
 	background-size: cover;
-	-webkit-filter: blur(5px);
+	background-repeat: no-repeat;
+	-webkit-filter: blur(6px);
 	z-index: 0;
 }
 
@@ -40,7 +41,7 @@ body{
 
 .header{
 	position: absolute;
-	top: calc(50% - 35px);
+	top: calc(52% - 35px);
 	left: calc(50% - 255px);
 	z-index: 2;
 }
@@ -57,11 +58,18 @@ body{
 .header div span{
 	color: #000000 !important;
 }
+.header div img{
+	widht:500px;
+	height:100px;
+	position: absolute;
+	top: calc(50% - 35px);
+	left: calc(50% - 255px);
+}
 
 .login{
 	position: absolute;
 	top: calc(50% - 75px);
-	left: calc(50% - 50px);
+	left: calc(60% - 50px);
 	height: 150px;
 	width: 350px;
 	padding: 10px;
@@ -72,42 +80,43 @@ body{
 	width: 250px;
 	height: 30px;
 	background: transparent;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
+	border: 1px solid rgba(0,0,0,0.9);
+	border-radius: 999px;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
 	font-weight: 400;
-	padding: 4px;
+	padding: 5px;
 }
 
 .login input[type=password]{
 	width: 250px;
 	height: 30px;
 	background: transparent;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
+	border: 1px solid rgba(0,0,0,0.9);
+	border-radius: 999px;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
 	font-weight: 400;
-	padding: 4px;
+	padding: 5px;
 	margin-top: 10px;
 }
 
 .login input[type=button]{
 	width: 260px;
 	height: 35px;
-	background: #fff;
-	border: 1px solid #fff;
+	background: black;
+	border: 1px solid green;
 	cursor: pointer;
-	border-radius: 2px;
-	color: #a18d6c;
+	border-radius: 999px;
+	color: rgba(0,164,102,1);
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
 	font-weight: 400;
 	padding: 6px;
 	margin-top: 10px;
+
 }
 
 .login input[type=button]:hover{
@@ -133,9 +142,9 @@ body{
 }
 
 ::-webkit-input-placeholder{
-   color: rgba(255,255,255,0.6);
+   color: rgba(255,255,255,1);
 }
 
 ::-moz-input-placeholder{
-   color: rgba(255,255,255,0.6);
+   color: rgba(255,255,255,0.9);
 }
