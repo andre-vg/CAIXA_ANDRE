@@ -2,9 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../static/starbucks1.png">
+    <link href="../static/css/pagar.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>Title</title>
 </head>
 <body>
-sucesso
+    <div class="cabecalho">
+      <div class="row">
+        <div class="col-sm" style="text-align: bottom">
+            <p><span id="datetime"></span></p>
+        </div>
+        <div class="col-sm" style="text-align: center">
+           <h1>STARBUCKS</h1>
+            <img src="static/starbucks1.png" class="img-fluid" >
+        </div>
+        <div class="col-sm" style="text-align: right">
+          <span id="time_span"></span>
+        </div>
+      </div>
+    </div>
+
+<div class = "nme_funcionario"><pre> Logado como: {{ nome_funcionario | safe }}            <a href="/">Logout</a></pre>
+          </div>
+
+      <div class="column central">
+        <h1>Compra Realizada com sucesso!</h1>
+        <h2>Informações da compra:</h2>
+        <p>Nome do Cliente {{nme | safe }}</p>
+        <p>Nome do Funcionário: {{nome_funcionario | safe }}</p>
+        <p>Valor da compra: R${{vlr_total | safe }}</p>
+
+    </div>
 </body>
 </html>

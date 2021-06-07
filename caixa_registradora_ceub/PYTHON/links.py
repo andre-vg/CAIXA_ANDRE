@@ -148,7 +148,7 @@ def teste():
               "VALUES (LAST_INSERT_ID(), %s, %s);"
     mysql.executar(comando, [idt_agua, agua])
 
-    return render_template('sucesso.html', data=data)
+    return render_template('sucesso.html', data=data, nme=nme, nome_funcionario=nome_funcionario, vlr_total=vlr_total)
 
 
 app.run(debug=True)
