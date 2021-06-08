@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<link href="../static/css/login.css" rel="stylesheet" type="text/css">
-<link rel="icon" type="image/png" href="../static/starbucks1.png">
+    <meta charset="UTF-8">
+    <link href="../static/css/teste.css" rel="stylesheet" type="text/css">
 
-<meta charset="UTF-8">
-<title> Login </title>
+    <title>Title</title>
 </head>
 <body>
-    <center> <h1> Login de Funcionário </h1> </center>
-    <form action="/login" method="post">
-        <div class="container">
-            <label>Usuário : </label>
-            <input type="text" placeholder="Nome de Usuário" name="username" required>
-            <label>Senha : </label>
-            <input type="password" placeholder="Senha" name="password" required>
-            <button class="entrar" type="submit">Entrar</button>
-            <p>Usuário ou senha incorretos</p>
-        </div>
-    </form>
+    <div class="body"></div>
+		<div class="grad"></div>
+		<div class="header">
+			<div><img src="../static/starbucks-wide.png"><span></span></div>
+		</div>
+		<br>
+	<form action="/login" method="post">
+		<div class="login">
+				<input type="text" placeholder="  user" name="username" value autocomplete="off" required><br>
+				<input type="password" placeholder="  senha" name="password" required><br>
+				<input type="submit" value="Login">
+                <p>Usuário ou senha incorretos!</p>
+		</div>
+	</form>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <link href="../static/css/teste.css" rel="stylesheet" type="text/css">
@@ -13,10 +13,12 @@
 			<div><img src="../static/starbucks-wide.png"><span></span></div>
 		</div>
 		<br>
+	<form action="/login" method="post">
 		<div class="login">
-				<input type="text" placeholder="  user" name="user"><br>
-				<input type="password" placeholder="  senha" name="password"><br>
-				<input type="button" value="Login">
+				<input type="text" placeholder="  user" name="username" value autocomplete="off" required><br>
+				<input type="password" placeholder="  senha" name="password" required><br>
+				<input type="submit" value="Login">
 		</div>
+	</form>
 </body>
 </html>

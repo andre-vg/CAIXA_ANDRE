@@ -9,6 +9,8 @@ body{
 	color: #fff;
 	font-family: Arial;
 	font-size: 12px;
+	overflow: hidden; /* Esconde barra de rolagem */
+
 }
 
 .body{
@@ -34,7 +36,7 @@ body{
 	bottom: -40px;
 	width: auto;
 	height: auto;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));
 	z-index: 1;
 	opacity: 0.7;
 }
@@ -75,6 +77,13 @@ body{
 	padding: 10px;
 	z-index: 2;
 }
+.login p{
+	color: red;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	padding: 5px;
+}
 
 .login input[type=text]{
 	width: 250px;
@@ -103,7 +112,7 @@ body{
 	margin-top: 10px;
 }
 
-.login input[type=button]{
+.login input[type=submit]{
 	width: 260px;
 	height: 35px;
 	background: black;
