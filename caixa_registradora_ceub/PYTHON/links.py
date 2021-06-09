@@ -3,13 +3,11 @@ import mysql.connector
 from flask import Flask, render_template, request
 from datetime import datetime
 
-
 app = Flask(__name__)
 
 
 @app.route('/login', methods=['POST'])
 def login():
-
     global usuario
     global senha
     usuario = request.form.get('username', '')
@@ -17,9 +15,9 @@ def login():
     print(usuario)
     print(senha)
 
-    cnx = mysql.connector.connect(user='qZAqwXH0Wi', password='O387pnW1tb',
-                                  host='remotemysql.com',
-                                  database='qZAqwXH0Wi')
+    cnx = mysql.connector.connect(user='root', password='root',
+                                  host='127.0.0.1',
+                                  database='db_caixa')
 
     print("Conectado=", cnx.is_connected())
 
@@ -61,7 +59,7 @@ def incluir():
     cpf = request.form['cpf']
 
     # Incluindo pessoa no SGBD
-    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    mysql = sql.SQL("root", "root", "db_caixa")
     comando = "INSERT INTO tb_cliente(nme_cliente, endereco_cliente, qtd_token, CPF) VALUES (%s, %s, %s, %s);"
     if mysql.executar(comando, [nme, end, token, cpf]):
         msg = "Cliente " + nme + " cadastrado(a) com sucesso!"
@@ -69,6 +67,7 @@ def incluir():
         msg = "Falha na inclusão do cliente."
 
     return msg
+
 
 @app.route('/pagar', methods=['POST'])
 def pagar():
@@ -78,16 +77,12 @@ def pagar():
     global torta, vlr_torta
     global agua, vlr_agua
 
-    espresso=request.form['qtd_espresso']
-    torta=request.form['qtd_torta']
-    agua=request.form['qtd_agua']
-    vlr_espresso=int(espresso) * 2.00
-    vlr_torta=int(torta) * 5.00
-    vlr_agua=int(agua) * 1.00
-
-
-
-    
+    espresso = request.form['qtd_espresso']
+    torta = request.form['qtd_torta']
+    agua = request.form['qtd_agua']
+    vlr_espresso = int(espresso) * 2.00
+    vlr_torta = int(torta) * 5.00
+    vlr_agua = int(agua) * 1.00
 
     return render_template('pagar.html', nome_funcionario=nome_funcionario, data=data,
                            espresso=espresso, torta=torta, agua=agua, vlr_torta=vlr_torta, vlr_espresso=vlr_espresso,
@@ -96,44 +91,43 @@ def pagar():
 
 @app.route('/buscar', methods=['POST'])
 def buscar():
+    # Recuperando dados vindos do Ajax
+    parte = request.form['parte']
 
-  # Recuperando dados vindos do Ajax
-  parte = request.form['parte']
+    # Incluindo pessoa no SGBD
+    mysql = sql.SQL("root", "root", "db_caixa")
+    comando = "SELECT * FROM tb_cliente WHERE CPF LIKE CONCAT('%', %s, '%') ORDER BY CPF;"
+    cs = mysql.consultar(comando, [parte])
+    print(cs)
+    global dados
+    dados = cs.fetchone()
+    if dados == None:
+        saida = ""
+    else:
+        saida = str(dados[0]) + ',' + dados[1] + ',' + dados[2] + ',' + str(dados[3]) + ',' + dados[4]
 
-  # Incluindo pessoa no SGBD
-  mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
-  comando = "SELECT * FROM tb_cliente WHERE CPF LIKE CONCAT('%', %s, '%') ORDER BY CPF;"
-  cs=mysql.consultar(comando, [parte])
-  print(cs)
-  global dados
-  dados = cs.fetchone()
-  if dados == None:
-      saida = ""
-  else:
-      saida = str(dados[0]) + ',' + dados[1] + ',' + dados[2] + ',' + str(dados[3]) + ',' + dados[4]
-
-  return saida
+    return saida
 
 
 @app.route('/sucesso')
 def teste():
     data = str(datetime.now())
-    idt_cliente=dados[0]
-    nme=dados[1]
-    end=dados[2]
-    token=dados[3]
-    cpf=dados[4]
+    idt_cliente = dados[0]
+    nme = dados[1]
+    end = dados[2]
+    token = dados[3]
+    cpf = dados[4]
 
-    print (nme, end, token, cpf)
-    print (espresso, vlr_espresso, torta, vlr_torta)
-    vlr_total= vlr_espresso + vlr_torta + vlr_agua
-    vlr_token=(int(vlr_total)/15)*3
+    print(nme, end, token, cpf)
+    print(espresso, vlr_espresso, torta, vlr_torta)
+    vlr_total = vlr_espresso + vlr_torta + vlr_agua
+    vlr_token = (int(vlr_total) / 15) * 3
 
-    idt_espresso=1
-    idt_torta=2
-    idt_agua=3
+    idt_espresso = 1
+    idt_torta = 2
+    idt_agua = 3
 
-    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    mysql = sql.SQL("root", "root", "db_caixa")
     comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
     mysql.executar(comando, [])
     comando = "INSERT INTO tb_pedido (cod_funcionario, cod_cliente, DataHora, vlr_total, vlr_total_token) " \
