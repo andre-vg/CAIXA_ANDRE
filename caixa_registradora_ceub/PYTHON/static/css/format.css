@@ -19,7 +19,10 @@ span{
 }
 body {
         height: 1080px;
-        background: linear-gradient(lightgreen, black);
+        background:transparent url("https://logosmarcas.net/wp-content/uploads/2020/09/Starbucks-Logo.png");
+	    background-size: cover;
+	    background-repeat: no-repeat;
+	    z-index: 0;
 }
 
 img {
@@ -64,11 +67,12 @@ img {
 }
 
 .middle {
-    width: 40%;
+    text-align:center;
+    margin-left:540px;
+    width: 50%;
     height: 700px;
     position: relative;
     border-radius: 30px;
-    padding-left: 50px;
     padding-top: 10px;
 
 
@@ -156,13 +160,6 @@ input[type=submit] {
   background-color: green;
 }
 
-.middle .torta img {
-    position: absolute;
-    top: 2%;
-    left: 35%;
-
-}
-
 .middle .torta .btn_torta {
   position: absolute;
   top: 20%;
@@ -222,4 +219,64 @@ input[type=submit] {
          margin-left: 400px;
          background-color: white;
          border-radius: 100px;
+}
+
+.middle .imgespresso{
+	position: absolute;
+	top: 50px;
+	left: 130px;
+	right: -40px;
+	bottom: 0px;
+	max-width:245px;
+    max-height:150px;
+    width: auto;
+    height: auto;
+    background:transparent url("../espresso.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	z-index: 0;
+}
+.middle .imgtorta{
+	position: absolute;
+	top: 0px;
+	left: 380px;
+	right: -40px;
+	bottom: 0px;
+	max-width:200px;
+    max-height:180px;
+    width: auto;
+    height: auto;
+    background:transparent url("../torta.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	z-index: 0;
+}
+.middle .imgagua{
+	position: absolute;
+	top: 50px;
+	left: 600px;
+	right: -40px;
+	bottom: 0px;
+	max-width:200px;
+    max-height:160px;
+    width: auto;
+    height: auto;
+    background:transparent url("../agua.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	z-index: 0;
+}
+
+.middle input {
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 140px;
+    position: relative;
+
+}
+.middle .pagar{
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 20px;
+
 }

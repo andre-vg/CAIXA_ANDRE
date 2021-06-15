@@ -3,8 +3,8 @@ import mysql.connector
 
 class SQL:
     def __init__(self, usuario, senha, esquema):
-        self.cnx = mysql.connector.connect(user=usuario, password=senha, \
-                                           host='remotemysql.com', \
+        self.cnx = mysql.connector.connect(user=usuario, password=senha,
+                                           host='127.0.0.1',
                                            database=esquema)
 
     def executar(self, comando, parametros):

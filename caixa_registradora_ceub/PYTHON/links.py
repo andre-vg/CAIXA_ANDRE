@@ -17,9 +17,9 @@ def login():
     print(usuario)
     print(senha)
 
-    cnx = mysql.connector.connect(user='qZAqwXH0Wi', password='O387pnW1tb',
-                                  host='remotemysql.com',
-                                  database='qZAqwXH0Wi')
+    cnx = mysql.connector.connect(user='root', password='root',
+                                  host='127.0.0.1',
+                                  database='db_caixa')
 
     print("Conectado=", cnx.is_connected())
 
@@ -61,7 +61,7 @@ def incluir():
     cpf = request.form['cpf']
 
     # Incluindo pessoa no SGBD
-    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    mysql = sql.SQL("root", "root", "db_caixa")
     comando = "INSERT INTO tb_cliente(nme_cliente, endereco_cliente, qtd_token, CPF) VALUES (%s, %s, %s, %s);"
     if mysql.executar(comando, [nme, end, token, cpf]):
         msg = "Cliente " + nme + " cadastrado(a) com sucesso!"
@@ -101,7 +101,7 @@ def buscar():
   parte = request.form['parte']
 
   # Incluindo pessoa no SGBD
-  mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+  mysql = sql.SQL("root", "root", "db_caixa")
   comando = "SELECT * FROM tb_cliente WHERE CPF LIKE CONCAT('%', %s, '%') ORDER BY CPF;"
   cs=mysql.consultar(comando, [parte])
   print(cs)
@@ -133,7 +133,7 @@ def teste():
     idt_torta=2
     idt_agua=3
 
-    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    mysql = sql.SQL("root", "root", "db_caixa")
     comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
     mysql.executar(comando, [])
     comando = "INSERT INTO tb_pedido (cod_funcionario, cod_cliente, DataHora, vlr_total, vlr_total_token) " \

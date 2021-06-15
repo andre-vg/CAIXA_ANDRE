@@ -34,7 +34,11 @@
       <div class="column middle">
         <h2>Selecione os produtos</h2>
         <form action = "/pagar" id="prod" method="post">
-            <input type="number" name="qtd_espresso" id="qtd_espresso" value="0">
+            <div class="imgespresso"></div>
+            <div class="imgtorta"></div>
+            <div class="imgagua"></div>
+
+            <input class="espresso" type="number" name="qtd_espresso" id="qtd_espresso" value="0">
             <input type="number" name="qtd_torta" id="qtd_torta" value="0">
             <input type="number" name="qtd_agua" id="qtd_agua" value="0">
             <p>
@@ -42,15 +46,6 @@
             </p>
         </form>
       </div>
-
-      <div class="column right">
-        <h2>Nota Fiscal</h2>
-        <ul id="resultado"></ul>
-
-        <button class="btn_valor_total" onclick="PrintaTotal()" value = "Itens na lista:">Valor Total</button><p id = "qtd_lista"></p>
-        <button class="btn_cadastra" type="submit" onclick="location.href='/pagar';" id = "btn_cadastra">PAGAR</button>
-      </div>
-    </div>
 
 
 
