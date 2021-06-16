@@ -2,11 +2,15 @@ import sql
 import mysql.connector
 from flask import Flask, render_template, request
 from datetime import datetime
-import os
-
-os.system("start "" http://localhost:5000/")
+import webbrowser
 
 app = Flask(__name__)
+
+url = 'http://localhost:5000/'
+webbrowser.register('chrome',
+                    None,
+                    webbrowser.BackgroundBrowser("C:\Program Files\Google\Chrome\Application\chrome.exe"))
+webbrowser.get('chrome').open(url)
 
 
 @app.route('/login', methods=['POST'])
@@ -153,4 +157,3 @@ def teste():
 
 
 app.run(debug=True)
-
