@@ -61,7 +61,7 @@ body{
 	color: #000000 !important;
 }
 .header div img{
-	widht:500px;
+	width:500px;
 	height:100px;
 	position: absolute;
 	top: calc(50% - 35px);

@@ -90,10 +90,12 @@ def pagar():
     vlr_espresso = int(espresso) * 2.00
     vlr_torta = int(torta) * 5.00
     vlr_agua = int(agua) * 1.00
+    vlr_total = vlr_espresso + vlr_torta + vlr_agua
+    vlr_token = round((int(vlr_total) / 15) * 3)
 
     return render_template('pagar.html', nome_funcionario=nome_funcionario, data=data,
                            espresso=espresso, torta=torta, agua=agua, vlr_torta=vlr_torta, vlr_espresso=vlr_espresso,
-                           vlr_agua=vlr_agua)
+                           vlr_agua=vlr_agua, vlr_total=vlr_total, vlr_token=vlr_token)
 
 
 @app.route('/buscar', methods=['POST'])
@@ -128,7 +130,9 @@ def teste():
     print(nme, end, token, cpf)
     print(espresso, vlr_espresso, torta, vlr_torta)
     vlr_total = vlr_espresso + vlr_torta + vlr_agua
-    vlr_token = (int(vlr_total) / 15) * 3
+    vlr_token = round((int(vlr_total) / 15) * 3)
+    recebe_token = (int(vlr_total) / 15)
+    recebe_token = round(recebe_token)
 
     idt_espresso = 1
     idt_torta = 2
@@ -153,7 +157,57 @@ def teste():
               "VALUES (LAST_INSERT_ID(), %s, %s);"
     mysql.executar(comando, [idt_agua, agua])
 
-    return render_template('sucesso.html', data=data, nme=nme, nome_funcionario=nome_funcionario, vlr_total=vlr_total)
+    comando = "update tb_cliente set qtd_token = qtd_token + %s where idt_cliente = %s;"
+    mysql.executar(comando, [recebe_token, idt_cliente])
+
+    return render_template('sucesso.html', data=data, nme=nme, nome_funcionario=nome_funcionario, vlr_total=vlr_total,
+                           vlr_token=vlr_token, recebe_token=recebe_token)
+
+
+@app.route('/sucesso_token')
+def token():
+    data = str(datetime.now())
+    idt_cliente = dados[0]
+    nme = dados[1]
+    end = dados[2]
+    token = dados[3]
+    cpf = dados[4]
+
+    print(nme, end, token, cpf)
+    print(espresso, vlr_espresso, torta, vlr_torta)
+    vlr_total = vlr_espresso + vlr_torta + vlr_agua
+    vlr_token = round((int(vlr_total) / 15) * 3)
+    recebe_token = (int(vlr_total) / 15)
+    recebe_token = round(recebe_token)
+
+    idt_espresso = 1
+    idt_torta = 2
+    idt_agua = 3
+
+    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
+    mysql.executar(comando, [])
+    comando = "INSERT INTO tb_pedido (cod_funcionario, cod_cliente, DataHora, vlr_total, vlr_total_token) " \
+              "VALUES (%s, %s, current_timestamp, %s, %s);"
+    mysql.executar(comando, [idt_funcionario, idt_cliente, vlr_total, vlr_token])
+
+    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+              "VALUES (LAST_INSERT_ID(), %s, %s);"
+    mysql.executar(comando, [idt_espresso, espresso])
+
+    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+              "VALUES (LAST_INSERT_ID(), %s, %s);"
+    mysql.executar(comando, [idt_torta, torta])
+
+    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+              "VALUES (LAST_INSERT_ID(), %s, %s);"
+    mysql.executar(comando, [idt_agua, agua])
+
+    comando = "update tb_cliente set qtd_token = qtd_token - %s where idt_cliente = %s;"
+    mysql.executar(comando, [vlr_token, idt_cliente])
+
+    return render_template('sucesso_token.html', data=data, nme=nme, nome_funcionario=nome_funcionario, vlr_total=vlr_total,
+                           vlr_token=vlr_token, recebe_token=recebe_token)
 
 
 app.run(debug=True)

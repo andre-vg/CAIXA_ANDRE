@@ -21,8 +21,7 @@
             <p><span id="datetime"></span></p>
         </div>
         <div class="col-sm" style="text-align: center">
-           <h1>STARBUCKS</h1>
-            <img src="static/starbucks1.png" class="img-fluid" >
+           <img src="../static/starbucks-wide.png">
         </div>
         <div class="col-sm" style="text-align: right">
           <span id="time_span"></span>
@@ -37,8 +36,8 @@
         <div class="column left">
         <h2>Informações do Cliente</h2>
          <div>
-              <p>
-                  Pesquisar nome: <input type="text" size="30" id="parte">
+              <p style="font-family: Montserrat">
+                  Pesquisar por CPF: <input type="text" size="30" id="parte">
                   <button id="pesquisar">Buscar</button>
               </p>
           </div>
@@ -46,7 +45,7 @@
           <form id="fm" method="post" autocomplete="off">
               <table>
                   <tr>
-                      <td>Número da Pessoa:</td>
+                      <td>Número (idt) da Pessoa:</td>
                       <td><input type="text" id="idt" size="5" maxlength="5" disabled/></td>
                   </tr>
                   <tr>
@@ -58,7 +57,7 @@
                       <td><input type="text" id="end" size="20" maxlength="20" required/></td>
                   </tr>
                   <tr>
-                      <td>token:</td>
+                      <td>Token:</td>
                       <td><input type="text" id="token" size="20" maxlength="20" required/></td>
                   </tr>
                   <tr>
@@ -70,12 +69,11 @@
               <br/>
               <button id="limpar">Limpar</button>
               <button id="incluir">Incluir</button>
-              <button id="alterar">Alterar</button>
-              <button id="excluir">Excluir</button>
+
               <br/>
               <br/>
           </form>
-          <div id="msg" style="font-size:22px; color: white; background-color: lightgreen; padding: 30px; display: none">
+          <div id="msg" style="font-size:22px; color: black; background-color: rgba(0,99,65,1); padding: 30px; display: none">
 
           </div>
 
@@ -100,11 +98,21 @@
                       <td>{{agua | safe}}x</td>
                       <td>R${{vlr_agua | safe}}</td>
                   </tr>
+                <tr>
+                      <td>Total :</td>
+                      <td></td>
+                      <td>R${{vlr_total | safe}}</td>
+                </tr>
+                <tr>
+                      <td>Total Token :</td>
+                      <td></td>
+                      <td>{{vlr_token | safe}} Tokens</td>
+                </tr>
 
               </table>
           <div class="btn_final">
               <button type="submit" onclick="javascript:window.location.href='/sucesso'">PAGAR</button>
-              <button type="submit">PAGAR COM TOKEN</button>
+              <button type="submit" onclick="javascript:window.location.href='/sucesso_token'">PAGAR COM TOKEN</button>
           </div>
       </div>
     </div>

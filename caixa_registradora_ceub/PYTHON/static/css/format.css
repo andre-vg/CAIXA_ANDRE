@@ -51,6 +51,15 @@ img {
 .col-sm h1{
         text-shadow: 2px 2px 5px green;
 }
+.col-sm img{
+        width: auto;
+	    height:100px;
+	    position: absolute;
+	    top: calc(50% - 49px);
+  	    left: calc(50% - 220px);
+
+
+}
 .column {
   float: left;
   padding: 10px;
@@ -106,7 +115,7 @@ img {
 
 .left h2{
         font-family: "Montserrat";
-        text-align: left;
+        text-align: center;
         font-size: 2em;
 }
 
@@ -140,6 +149,33 @@ input[type=submit] {
   height: 300px;
 
 }
+.left button{
+    font-family: "Montserrat";
+    background-color: rgba(0,99,65,1);
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: solid;
+    border-radius: 13px;
+    border-width: 2px;
+    cursor: pointer;
+
+}
+.left table{
+        font-family: "Montserrat";
+        font-size: 1em;
+
+}
+.left input{
+        border-style: solid;
+        border-width: 2px;
+        border-color: rgba(0,99,65);
+}
+
 .left a{
         font-family: "Montserrat";
         font-size: 1em;
@@ -173,6 +209,11 @@ input[type=submit] {
   cursor: pointer;
   border-radius: 20px;
   text-align: left;
+}
+.middle pre{
+        text-align:left;
+        font-family: "Montserrat";
+        margin-left:185px;
 }
 
 .espresso .btn:hover {
@@ -226,8 +267,26 @@ input[type=submit] {
 }
 
 .right table{
+        font-family: "Montserrat";
+        font-size: 15px;
         border-spacing: 20px;
         border-collapse: separate;
+}
+.right button{
+    font-family: "Montserrat";
+    background-color: rgba(0,99,65,1);
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: solid;
+    border-radius: 13px;
+    border-width: 2px;
+    cursor: pointer;
+
 }
 .central {
          float: center;
