@@ -1,30 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <link href="../Testes/static/form.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-  <form>
-    <h1>Fancy Text Inputs</h1>
-    <div class="question">
-      <input type="text" required/>
-      <label>First Name</label>
+<html>
+  <body>
+    <p id="ignorePDF">don't print this to pdf</p>
+    <div>
+      <p><font size="3" color="red">print this to pdf</font></p>
     </div>
-    <div class="question">
-      <input type="text" required/>
-      <label>Last Name</label>
-    </div>
-    <div class="question">
-      <input type="text" required/>
-      <label>Email Address</label>
-    </div>
-    <div class="question">
-      <input type="text" required/>
-      <label>Email Confirm</label>
-    </div>
-    <button>Submit</button>
-  </form>
+  </body>
 
-</body>
+<script>
+  var doc = new jsPDF();
+var elementHandler = {
+  '#ignorePDF': function (element, renderer) {
+    return true;
+  }
+};
+var source = window.document.getElementsByTagName("body")[0];
+doc.fromHTML(
+    source,
+    15,
+    15,
+    {
+      'width': 180,'elementHandlers': elementHandler
+    });
+
+doc.output("dataurlnewwindow");
+</script>
 </html>
+

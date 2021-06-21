@@ -371,3 +371,17 @@ input[type=submit] {
     cursor: pointer;
 
 }
+.middle .relatorio {
+        position:absolute;
+        font-family: "Montserrat";
+    background-color: rgba(145, 146, 161, 0.71);
+    margin-left: 300px;
+    margin-top: 360px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+}

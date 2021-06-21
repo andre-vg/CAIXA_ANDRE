@@ -31,26 +31,32 @@
 
 
       <div class="column middle">
-        <h2>Selecione os produtos</h2>
-        <form action = "/pagar" id="prod" method="post">
-            <div class="imgespresso"></div>
-            <div class="imgtorta"></div>
-            <div class="imgagua"></div>
+        <div id="conteudo">
+     <h3>Olá, esta é uma tag H3</h3>
 
-            <input class="espresso" type="number" name="qtd_espresso" id="qtd_espresso" min="0" placeholder="Café Espresso" value="0">
-            <input type="number" name="qtd_torta" id="qtd_torta" min="0" placeholder="Torta" value="0">
-            <input type="number" name="qtd_agua" id="qtd_agua" min="0" placeholder="Àgua" value="0">
-            <div class="prod_nme"><pre>CAFÉ ESPRESSO                                 TORTA                                         ÀGUA</pre>
-            </div>
-                <p>
-                <button class="pagar" type="submit" id = "btn_pagar">PAGAR</button>
-            </p>
-                <button class="relatorio" onclick="javascript:window.location.href='/relatorio'">RELATÓRIOS</button>
-        </form>
+    <p>Um parágrafo.</p>
+        </div>
+        <div id="editor"></div>
+        <button id="btGerarPDF">gerar PDF</button>
       </div>
     </div>
 
+    <script>
+       var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
 
+$('#btGerarPDF').click(function () {
+    doc.fromHTML($('#conteudo').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('exemplo-pdf.pdf');
+});
+    </script>
 
     <script type = "text/javascript" src="static/js/hora.js"></script>
     <script>
