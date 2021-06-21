@@ -206,8 +206,16 @@ def token():
     comando = "update tb_cliente set qtd_token = qtd_token - %s where idt_cliente = %s;"
     mysql.executar(comando, [vlr_token, idt_cliente])
 
-    return render_template('sucesso_token.html', data=data, nme=nme, nome_funcionario=nome_funcionario, vlr_total=vlr_total,
+    return render_template('sucesso_token.html', data=data, nme=nme, nome_funcionario=nome_funcionario,
+                           vlr_total=vlr_total,
                            vlr_token=vlr_token, recebe_token=recebe_token)
+
+
+@app.route('/relatorio')
+def relatorio():
+    data = str(datetime.now())
+
+    return render_template('relatorios.html', data=data)
 
 
 app.run(debug=True)
