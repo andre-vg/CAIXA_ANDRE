@@ -32,8 +32,7 @@
         <h2>Informações da compra:</h2>
         <p>Nome do Cliente {{nme | safe }}</p>
         <p>Nome do Funcionário: {{nome_funcionario | safe }}</p>
-        <p>Valor da compra: R${{vlr_total | safe }}</p>
-        <p>Tokens Recebidos: R${{recebe_token | safe }}</p>
+        <p>Valor da compra: {{vlr_token | safe }} Tokens</p>
 
           <button onclick="voltaduas()">Nova Compra</button>
       </div>

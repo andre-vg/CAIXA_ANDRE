@@ -8,15 +8,15 @@
     <title>Starbucks</title>
 </head>
 <body>
-
+    <div class="body"></div>
+		<div class="grad"></div>
     <div class="cabecalho">
       <div class="row">
         <div class="col-sm" style="text-align: bottom">
             <p><span id="datetime"></span></p>
         </div>
         <div class="col-sm" style="text-align: center">
-           <h1>STARBUCKS</h1>
-            <img src="static/starbucks1.png" class="img-fluid" >
+            <img src="../static/starbucks-wide.png">
         </div>
         <div class="col-sm" style="text-align: right">
           <span id="time_span"></span>
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-<div class = "nme_funcionario"><pre> Logado como: {{ nome_funcionario | safe }}            <a href="/">Logout</a></pre>
+<div class = "nme_funcionario"><pre> Logado como: {{ nome_funcionario | safe }}  <a href="/">Logout</a></pre>
           </div>
 
     <div class="row">
@@ -37,14 +37,17 @@
             <div class="imgtorta"></div>
             <div class="imgagua"></div>
 
-            <input class="espresso" type="number" name="qtd_espresso" id="qtd_espresso" value="0">
-            <input type="number" name="qtd_torta" id="qtd_torta" value="0">
-            <input type="number" name="qtd_agua" id="qtd_agua" value="0">
-            <p>
+            <input class="espresso" type="number" name="qtd_espresso" id="qtd_espresso" min="0" placeholder="Café Espresso" value="0">
+            <input type="number" name="qtd_torta" id="qtd_torta" min="0" placeholder="Torta" value="0">
+            <input type="number" name="qtd_agua" id="qtd_agua" min="0" placeholder="Àgua" value="0">
+            <div class="prod_nme"><pre>CAFÉ ESPRESSO                                 TORTA                                         ÀGUA</pre>
+            </div>
+                <p>
                 <button class="pagar" type="submit" id = "btn_pagar">PAGAR</button>
             </p>
         </form>
       </div>
+    </div>
 
 
 
