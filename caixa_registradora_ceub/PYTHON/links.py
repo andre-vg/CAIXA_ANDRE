@@ -271,12 +271,12 @@ def relatorio():
     info = cs.fetchone()
     qtd_venda = info[0]
 
-    comando = "select sum(vlr_total) from tb_pedido where DataHora LIKE CONCAT('%', %s, '%');"
+    comando = "select IFNULL(sum(vlr_total),0) from tb_pedido where DataHora LIKE CONCAT('%', %s, '%');"
     cs = mysql.consultar(comando, [dia])
     info = cs.fetchone()
     vlr_venda = info[0]
 
-    comando = "select sum(vlr_total) from tb_pedido where DataHora LIKE CONCAT('%2021-', %s, '%');"
+    comando = "select IFNULL(sum(vlr_total),0) from tb_pedido where DataHora LIKE CONCAT('%2021-', %s, '%');"
     cs = mysql.consultar(comando, [mes])
     info = cs.fetchone()
     vlr_venda_mes = info[0]

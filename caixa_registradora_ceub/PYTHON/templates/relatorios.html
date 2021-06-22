@@ -35,6 +35,7 @@
             <p>Vendas no Mês de {{nme_mes}}: {{qtd_venda_mes}}</p>
             <p>Valor Vendido no Mês de {{nme_mes}}: R${{vlr_venda_mes}}</p>
           </div>
+              <button class = "pagar" onclick="voltauma()">Menu</button>
       </div>
     </div>
 
@@ -92,6 +93,11 @@ $('#btGerarPDF').click(function () {
             document.getElementById("qtd_lista").innerHTML = qtd_lista;
          }
     </script>
+<script>
+function voltauma() {
+  window.history.go(-1);
+}
+</script>
 
 </body>
 </html>
