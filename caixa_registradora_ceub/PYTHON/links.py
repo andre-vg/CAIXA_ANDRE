@@ -213,7 +213,48 @@ def token():
 
 @app.route('/relatorio')
 def relatorio():
+    global nme_mes
     data = str(datetime.now())
+
+    date = datetime.now()
+    mes = date.strftime("%m")
+
+    if mes == '01':
+        nme_mes = str('Janeiro')
+        print(nme_mes)
+    if mes == '02':
+        nme_mes = str('Fevereiro')
+        print(nme_mes)
+    if mes == '03':
+        nme_mes = str('Março')
+        print(nme_mes)
+    if mes == '04':
+        nme_mes = str('Abril')
+        print(nme_mes)
+    if mes == '05':
+        nme_mes = str('Maio')
+        print(nme_mes)
+    if mes == '06':
+        nme_mes = str("Junho")
+        print(nme_mes)
+    if mes == '07':
+        nme_mes = str("Julho")
+        print(nme_mes)
+    if mes == '08':
+        nme_mes = str("Agosto")
+        print(nme_mes)
+    if mes == '09':
+        nme_mes = str("Setembro")
+        print(nme_mes)
+    if mes == '10':
+        nme_mes = str("Outubro")
+        print(nme_mes)
+    if mes == '11':
+        nme_mes = str("Novembro")
+        print(nme_mes)
+    if mes == '12':
+        nme_mes = str("Dezembro")
+        print(nme_mes)
 
     mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
     comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
@@ -235,8 +276,19 @@ def relatorio():
     info = cs.fetchone()
     vlr_venda = info[0]
 
+    comando = "select sum(vlr_total) from tb_pedido where DataHora LIKE CONCAT('%2021-', %s, '%');"
+    cs = mysql.consultar(comando, [mes])
+    info = cs.fetchone()
+    vlr_venda_mes = info[0]
+
+    comando = "select count(*) from tb_pedido where DataHora LIKE CONCAT('%2021-', %s, '%');"
+    cs = mysql.consultar(comando, [mes])
+    info = cs.fetchone()
+    qtd_venda_mes = info[0]
+
     return render_template('relatorios.html', data=data, qtd_venda=qtd_venda, vlr_venda=vlr_venda,
-                           nome_funcionario=nome_funcionario)
+                           nome_funcionario=nome_funcionario, vlr_venda_mes=vlr_venda_mes,
+                           qtd_venda_mes=qtd_venda_mes, nme_mes=nme_mes)
 
 
 app.run(debug=True)
