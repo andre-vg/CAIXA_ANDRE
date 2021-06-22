@@ -346,8 +346,32 @@ input[type=submit] {
 	background-repeat: no-repeat;
 	z-index: 0;
 }
+.middle .imgcookie{
+	position: absolute;
+	top: 270px;
+	left: 415px;
+	right: -40px;
+	bottom: 0px;
+	max-width:140px;
+    max-height:140px;
+    width: auto;
+    height: auto;
+    background:transparent url("../cookie.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	z-index: 0;
+}
+.middle .prod_nme2 pre{
+        text-align: center;
+        margin-right: 0px;
+        margin-left: 0px;
+        margin-top: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+}
 
-.middle input {
+.middle input{
+
     margin-right: 20px;
     margin-left: 20px;
     margin-top: 140px;

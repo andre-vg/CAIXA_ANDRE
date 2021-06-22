@@ -83,19 +83,22 @@ def pagar():
     global espresso, vlr_espresso
     global torta, vlr_torta
     global agua, vlr_agua
+    global cookie, vlr_cookie
 
     espresso = request.form['qtd_espresso']
     torta = request.form['qtd_torta']
     agua = request.form['qtd_agua']
+    cookie = request.form['qtd_cookie']
     vlr_espresso = int(espresso) * 2.00
     vlr_torta = int(torta) * 5.00
     vlr_agua = int(agua) * 1.00
-    vlr_total = vlr_espresso + vlr_torta + vlr_agua
+    vlr_cookie = int(cookie) * 3.50
+    vlr_total = vlr_espresso + vlr_torta + vlr_agua + vlr_cookie
     vlr_token = round((int(vlr_total) / 15) * 3)
 
     return render_template('pagar.html', nome_funcionario=nome_funcionario, data=data,
-                           espresso=espresso, torta=torta, agua=agua, vlr_torta=vlr_torta, vlr_espresso=vlr_espresso,
-                           vlr_agua=vlr_agua, vlr_total=vlr_total, vlr_token=vlr_token)
+                           espresso=espresso, torta=torta, agua=agua, cookie=cookie, vlr_torta=vlr_torta, vlr_espresso=vlr_espresso,
+                           vlr_agua=vlr_agua, vlr_total=vlr_total, vlr_token=vlr_token, vlr_cookie=vlr_cookie)
 
 
 @app.route('/buscar', methods=['POST'])
@@ -129,7 +132,7 @@ def teste():
 
     print(nme, end, token, cpf)
     print(espresso, vlr_espresso, torta, vlr_torta)
-    vlr_total = vlr_espresso + vlr_torta + vlr_agua
+    vlr_total = vlr_espresso + vlr_torta + vlr_agua + vlr_cookie
     vlr_token = round((int(vlr_total) / 15) * 3)
     recebe_token = (int(vlr_total) / 15)
     recebe_token = round(recebe_token)
@@ -137,6 +140,7 @@ def teste():
     idt_espresso = 1
     idt_torta = 2
     idt_agua = 3
+    idt_cookie = 4
 
     mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
     comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
@@ -156,6 +160,10 @@ def teste():
     comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
               "VALUES (LAST_INSERT_ID(), %s, %s);"
     mysql.executar(comando, [idt_agua, agua])
+
+    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+              "VALUES (LAST_INSERT_ID(), %s, %s);"
+    mysql.executar(comando, [idt_cookie, cookie])
 
     comando = "update tb_cliente set qtd_token = qtd_token + %s where idt_cliente = %s;"
     mysql.executar(comando, [recebe_token, idt_cliente])
@@ -175,7 +183,7 @@ def token():
 
     print(nme, end, token, cpf)
     print(espresso, vlr_espresso, torta, vlr_torta)
-    vlr_total = vlr_espresso + vlr_torta + vlr_agua
+    vlr_total = vlr_espresso + vlr_torta + vlr_agua + vlr_cookie
     vlr_token = round((int(vlr_total) / 15) * 3)
     recebe_token = (int(vlr_total) / 15)
     recebe_token = round(recebe_token)
@@ -183,6 +191,7 @@ def token():
     idt_espresso = 1
     idt_torta = 2
     idt_agua = 3
+    idt_cookie = 4
 
     mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
     comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
@@ -202,6 +211,10 @@ def token():
     comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
               "VALUES (LAST_INSERT_ID(), %s, %s);"
     mysql.executar(comando, [idt_agua, agua])
+
+    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+              "VALUES (LAST_INSERT_ID(), %s, %s);"
+    mysql.executar(comando, [idt_cookie, cookie])
 
     comando = "update tb_cliente set qtd_token = qtd_token - %s where idt_cliente = %s;"
     mysql.executar(comando, [vlr_token, idt_cliente])
