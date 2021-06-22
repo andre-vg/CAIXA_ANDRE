@@ -371,7 +371,7 @@ input[type=submit] {
     cursor: pointer;
 
 }
-.middle .relatorio {
+.middle .relatoriobtn {
         position:absolute;
         font-family: "Montserrat";
     background-color: rgba(145, 146, 161, 0.71);
@@ -384,4 +384,12 @@ input[type=submit] {
     border: none;
     border-radius: 13px;
     cursor: pointer;
+}
+
+.middle .relatorio p{
+        font-family: "Montserrat";
+        text-align: left;
+        font-size: 40px;
+        border-spacing: 20px;
+        border-collapse: separate;
 }

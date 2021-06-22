@@ -31,7 +31,7 @@ def login():
     cs = cnx.cursor(buffered=True)
 
     sql = "SELECT idt_funcionario, nme_funcionario, username, senha FROM tb_funcionario where" \
-          " username = %s and senha = %s; "
+          " username = %s and senha = md5(%s); "
 
     cs.execute(sql, (usuario, senha))
 
@@ -215,7 +215,28 @@ def token():
 def relatorio():
     data = str(datetime.now())
 
-    return render_template('relatorios.html', data=data)
+    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
+    mysql.executar(comando, [])
+
+    comando = "select current_date();"
+    cs = mysql.consultar(comando, [])
+    info = cs.fetchone()
+    dia = info[0]
+    print(dia)
+
+    comando = "select count(*) from tb_pedido where DataHora LIKE CONCAT('%', %s, '%');"
+    cs = mysql.consultar(comando, [dia])
+    info = cs.fetchone()
+    qtd_venda = info[0]
+
+    comando = "select sum(vlr_total) from tb_pedido where DataHora LIKE CONCAT('%', %s, '%');"
+    cs = mysql.consultar(comando, [dia])
+    info = cs.fetchone()
+    vlr_venda = info[0]
+
+    return render_template('relatorios.html', data=data, qtd_venda=qtd_venda, vlr_venda=vlr_venda,
+                           nome_funcionario=nome_funcionario)
 
 
 app.run(debug=True)
