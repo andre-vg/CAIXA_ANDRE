@@ -396,11 +396,10 @@ input[type=submit] {
 
 }
 .middle .relatoriobtn {
-        position:absolute;
         font-family: "Montserrat";
     background-color: rgba(145, 146, 161, 0.71);
-    margin-left: 300px;
-    margin-top: 360px;
+    margin-left: 700px;
+    margin-top: 140px;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 3px;

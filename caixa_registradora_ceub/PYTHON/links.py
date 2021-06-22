@@ -94,10 +94,14 @@ def pagar():
     vlr_agua = int(agua) * 1.00
     vlr_cookie = int(cookie) * 3.50
     vlr_total = vlr_espresso + vlr_torta + vlr_agua + vlr_cookie
-    vlr_token = round((int(vlr_total) / 15) * 3)
+    if round((int(vlr_total) / 15) * 3) == 0:
+        vlr_token = 1
+    else:
+        vlr_token = round((int(vlr_total) / 15) * 3)
 
     return render_template('pagar.html', nome_funcionario=nome_funcionario, data=data,
-                           espresso=espresso, torta=torta, agua=agua, cookie=cookie, vlr_torta=vlr_torta, vlr_espresso=vlr_espresso,
+                           espresso=espresso, torta=torta, agua=agua, cookie=cookie, vlr_torta=vlr_torta,
+                           vlr_espresso=vlr_espresso,
                            vlr_agua=vlr_agua, vlr_total=vlr_total, vlr_token=vlr_token, vlr_cookie=vlr_cookie)
 
 
