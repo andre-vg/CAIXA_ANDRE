@@ -197,35 +197,41 @@ def token():
     idt_agua = 3
     idt_cookie = 4
 
-    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
-    comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
-    mysql.executar(comando, [])
-    comando = "INSERT INTO tb_pedido (cod_funcionario, cod_cliente, DataHora, vlr_total, vlr_total_token) " \
-              "VALUES (%s, %s, current_timestamp, %s, %s);"
-    mysql.executar(comando, [idt_funcionario, idt_cliente, vlr_total, vlr_token])
+    if token < vlr_token:
+        return render_template('pagar_erro.html', nome_funcionario=nome_funcionario, data=data,
+                               espresso=espresso, torta=torta, agua=agua, cookie=cookie, vlr_torta=vlr_torta,
+                               vlr_espresso=vlr_espresso,
+                               vlr_agua=vlr_agua, vlr_total=vlr_total, vlr_token=vlr_token, vlr_cookie=vlr_cookie)
+    else:
+        mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+        comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
+        mysql.executar(comando, [])
+        comando = "INSERT INTO tb_pedido (cod_funcionario, cod_cliente, DataHora, vlr_total, vlr_total_token) " \
+                  "VALUES (%s, %s, current_timestamp, %s, %s);"
+        mysql.executar(comando, [idt_funcionario, idt_cliente, vlr_total, vlr_token])
 
-    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
-              "VALUES (LAST_INSERT_ID(), %s, %s);"
-    mysql.executar(comando, [idt_espresso, espresso])
+        comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+                  "VALUES (LAST_INSERT_ID(), %s, %s);"
+        mysql.executar(comando, [idt_espresso, espresso])
 
-    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
-              "VALUES (LAST_INSERT_ID(), %s, %s);"
-    mysql.executar(comando, [idt_torta, torta])
+        comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+                  "VALUES (LAST_INSERT_ID(), %s, %s);"
+        mysql.executar(comando, [idt_torta, torta])
 
-    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
-              "VALUES (LAST_INSERT_ID(), %s, %s);"
-    mysql.executar(comando, [idt_agua, agua])
+        comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+                  "VALUES (LAST_INSERT_ID(), %s, %s);"
+        mysql.executar(comando, [idt_agua, agua])
 
-    comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
-              "VALUES (LAST_INSERT_ID(), %s, %s);"
-    mysql.executar(comando, [idt_cookie, cookie])
+        comando = "INSERT INTO ta_pedido_produto (cod_pedido, cod_produto, qtd_produto)" \
+                  "VALUES (LAST_INSERT_ID(), %s, %s);"
+        mysql.executar(comando, [idt_cookie, cookie])
 
-    comando = "update tb_cliente set qtd_token = qtd_token - %s where idt_cliente = %s;"
-    mysql.executar(comando, [vlr_token, idt_cliente])
+        comando = "update tb_cliente set qtd_token = qtd_token - %s where idt_cliente = %s;"
+        mysql.executar(comando, [vlr_token, idt_cliente])
 
-    return render_template('sucesso_token.html', data=data, nme=nme, nome_funcionario=nome_funcionario,
-                           vlr_total=vlr_total,
-                           vlr_token=vlr_token, recebe_token=recebe_token)
+        return render_template('sucesso_token.html', data=data, nme=nme, nome_funcionario=nome_funcionario,
+                               vlr_total=vlr_total,
+                               vlr_token=vlr_token, recebe_token=recebe_token)
 
 
 @app.route('/relatorio')

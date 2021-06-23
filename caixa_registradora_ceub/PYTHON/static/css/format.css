@@ -288,6 +288,14 @@ input[type=submit] {
     cursor: pointer;
 
 }
+.right .msg_erro{
+        margin-top: 5px;
+        color: red;
+        font-family: 'Exo', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 5px;
+}
 .central {
          float: center;
          padding-top: 10px;
