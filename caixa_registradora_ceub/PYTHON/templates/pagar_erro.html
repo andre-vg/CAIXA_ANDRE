@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../static/starbucks1.png">
+    <link href="../static/css/format.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>Starbucks</title>
+</head>
+<body>
+<div class="body"></div>
+		<div class="grad"></div>
+
+    <div class="cabecalho">
+      <div class="row">
+        <div class="col-sm" style="text-align: bottom">
+            <p><span id="datetime"></span></p>
+        </div>
+        <div class="col-sm" style="text-align: center">
+           <img src="../static/starbucks-wide.png">
+        </div>
+        <div class="col-sm" style="text-align: right">
+          <span id="time_span"></span>
+        </div>
+      </div>
+    </div>
+
+<div class = "nme_funcionario"><pre> Logado como: {{ nome_funcionario | safe }} <a href="/">Logout</a></pre>
+          </div>
+
+    <div class="row">
+        <div class="column left">
+        <h2>Informações do Cliente</h2>
+         <div>
+              <p style="font-family: Montserrat">
+                  Pesquisar por CPF: <input type="text" size="30" id="parte">
+                  <button id="pesquisar">Buscar</button>
+              </p>
+          </div>
+          <hr/>
+          <form id="fm" method="post" autocomplete="off">
+              <table>
+                  <tr>
+                      <td>Número (idt) da Pessoa:</td>
+                      <td><input type="text" id="idt" size="5" maxlength="5" disabled/></td>
+                  </tr>
+                  <tr>
+                      <td>Nome da Pessoa:</td>
+                      <td><input type="text" id="nme" size="50" maxlength="50" required/></td>
+                  </tr>
+                  <tr>
+                      <td>Endereço:</td>
+                      <td><input type="text" id="end" size="20" maxlength="20" required/></td>
+                  </tr>
+                  <tr>
+                      <td>Token:</td>
+                      <td><input type="text" id="token" size="20" maxlength="20" required/></td>
+                  </tr>
+                  <tr>
+                      <td>CPF:</td>
+                      <td><input type="text" id="cpf" size="20" maxlength="20" required/></td>
+                  </tr>
+              </table>
+              <hr/>
+              <br/>
+              <button id="limpar">Limpar</button>
+              <button id="incluir">Incluir</button>
+              <button onclick="voltauma()">Menu</button>
+
+              <br/>
+              <br/>
+          </form>
+          <div id="msg" style="font-size:22px; color: black; background-color: rgba(0,99,65,1); padding: 30px; display: none">
+
+          </div>
+
+      </div>
+
+
+      <div class="column right">
+        <h2>Nota Fiscal</h2>
+            <table>
+                  <tr>
+                      <td>Café espresso</td>
+                      <td>{{espresso | safe}}x</td>
+                      <td>R${{vlr_espresso | safe}}</td>
+                  </tr>
+                  <tr>
+                      <td>Torta</td>
+                      <td>{{torta | safe}}x</td>
+                      <td>R${{vlr_torta | safe}}</td>
+                  </tr>
+                  <tr>
+                      <td>Àgua</td>
+                      <td>{{agua | safe}}x</td>
+                      <td>R${{vlr_agua | safe}}</td>
+                  </tr>
+                <tr>
+                      <td>Cookie</td>
+                      <td>{{cookie | safe}}x</td>
+                      <td>R${{vlr_cookie | safe}}</td>
+                  </tr>
+                <tr>
+                      <td>Total :</td>
+                      <td></td>
+                      <td>R${{vlr_total | safe}}</td>
+                </tr>
+                <tr>
+                      <td>Total Token :</td>
+                      <td></td>
+                      <td>{{vlr_token | safe}} Token(s)</td>
+                </tr>
+
+              </table>
+          <div class="btn_final">
+              <button type="submit" onclick="javascript:window.location.href='/sucesso'">PAGAR</button>
+              <button type="submit" onclick="javascript:window.location.href='/sucesso_token'">PAGAR COM TOKEN</button>
+          </div>
+        <p class="msg_erro">Erro, cliente não possui quantidade de tokens</p>
+      </div>
+    </div>
+
+
+
+    <script type = "text/javascript" src="static/js/hora.js"></script>
+    <script>
+        var dt = new Date();
+        document.getElementById("datetime").innerHTML = (("0"+(dt.getDate())).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear());</script>
+    <script>
+        var dt = new Date();
+        document.getElementById("hora").innerHTML = dt.toLocaleTimeString();</script>
+
+
+
+    <script>
+        function addItemEspresso(){
+            var li = document.createElement("LI");
+            var input = document.getElementById("espresso");
+            li.innerHTML = input.value;
+
+
+            document.getElementById("resultado").appendChild(li);
+        }
+    </script>
+    <script>
+        function addItemTorta(){
+            var li = document.createElement("LI");
+            var input = document.getElementById("torta");
+            li.innerHTML = input.value;
+
+
+            document.getElementById("resultado").appendChild(li);
+        }
+    </script>
+    <script>
+         function PrintaTotal(){
+            var lista = document.getElementById("resultado").getElementsByTagName("li");
+            var qtd_lista = lista.length
+            document.getElementById("qtd_lista").innerHTML = qtd_lista;
+         }
+    </script>
+<script>
+   $.ajaxSetup({
+      type: "POST"
+   });
+
+   // Desligar a submissão automática do formulário
+   $( "#fm" ).submit(function( event ) {
+       event.preventDefault();
+   });
+
+   // Limpar as caixas de entrada de dados do HTML
+   $('#limpar').click(function (){
+       $('#msg').css("display", "none");
+       $('input').val("")
+
+       // Controlando os botões
+       $('#incluir').prop('disabled', false);
+       $('#alterar').prop('disabled', true);
+       $('#excluir').prop('disabled', true);
+
+   });
+
+   // Chamar rota para incluir pessoa
+   $('#incluir').click(function (){
+       $('#fm').submit();
+       if ($('#nme').val() != '' && $('#end').val()!='' && $('#token').val()!='' && $('#cpf').val()!='') {
+           $.ajax({
+              url: "/incluir",
+              data: {nme: $('#nme').val(), end: $('#end').val(), token: $('#token').val(), cpf: $('#cpf').val()},
+              success: function(retorno) {
+                 $('#msg').css("display", "none");
+                 $("#msg").html(retorno);
+                 $('#msg').slideDown("slow");
+                 $("input").val("")
+              }
+           });
+       }
+   });
+
+   // Chamar rota para buscar pessoa
+   $('#pesquisar').click(function (){
+       $.ajax({
+          url: "/buscar",
+          data: {parte: $('#parte').val()},
+          success: function(retorno) {
+             if (retorno == '') {
+                 $('#msg').css("display", "none");
+                 $("#msg").html("CPF não encontrado na base de dados");
+                 $('#msg').slideDown("slow");
+             }
+             else{
+                 dados = retorno.split(',');
+                 $('#idt').val(dados[0]);
+                 $('#nme').val(dados[1]);
+                 $('#end').val(dados[2]);
+                 $('#token').val(dados[3]);
+                 $('#cpf').val(dados[4]);
+             }
+          }
+       });
+       $('#incluir').prop('disabled', true);
+   });
+
+
+</script>
+<script>
+function voltauma() {
+  window.history.go(-1);
+}
+</script>
+
+</body>
+</html>
