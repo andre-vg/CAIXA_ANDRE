@@ -1,0 +1,103 @@
+p{
+    font-size: 12px;
+    font-family: Montserrat;
+    color: red;
+}
+body{
+    background-color: #006632;
+}
+
+a{
+    font-size: 30px;
+    font-family: Montserrat;
+    color: black;
+    font-style: bold;
+}
+
+a:hover{
+    font-size: 35px;
+    font-family: Verdana;
+    color: greenyellow;
+    font-style: bold;
+}
+.box{
+    border-radius: 50px;
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000000;
+    text-align: center;
+}
+.box h1{
+    font-size: 45px;
+    font-family: Montserrat;
+    color: white;
+}
+.box input[type=text],.box input[type=password]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #003333;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    font-size: 15px;
+    font-family: Montserrat;
+}
+.box input[type=text]:hover,.box input[type=password]:hover{
+    transition: 0.25s;
+    width: 250px;
+    border-color: #009967;
+
+}
+.box input[type=text]::placeholder,.box input[type=password]::placeholder{
+    color: white;
+    opacity: 1;
+
+}
+.box input[type=text]:focus,.box input[type=password]:focus{
+    transition: 0.25s;
+    width: 250px;
+    border-color: #ffffff;
+}
+
+.box input[type=submit]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #009967;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    font-family: Montserrat;
+}
+.box input[type=submit]:hover{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #000000;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    font-family: Montserrat;
+    color: #000;
+    background: #009967;
+}

@@ -47,14 +47,14 @@ def login():
         nome_funcionario = dados[1]
         return render_template('index.html', nome_funcionario=nome_funcionario)
     else:
-        return render_template('naoencontrado.html')
+        return render_template('novonaoencontrado.html')
 
 
 @app.route('/')
 def principal():
     data = str(datetime.now())
 
-    return render_template('formlogin.html', data=data)
+    return render_template('novologin.html', data=data)
 
 
 @app.route('/incluir', methods=['POST'])
