@@ -130,6 +130,13 @@ body{
 	font-weight: 400;
 	padding: 6px;
 	margin-top: 10px;
+	transition: 0.25s;
+
+}
+.login input[type=submit]:hover{
+
+	color: rgba(255,255,255,1);
+    background-color: rgba(0,99,65,1);
 
 }
 .login input[type=submit]:hover{
@@ -150,13 +157,19 @@ body{
 }
 
 .login input[type=text]:focus{
+    width:310px;
+    transition: 0.2s;
 	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
+	border: 3px solid rgba(0,99,65,1);
 }
 
 .login input[type=password]:focus{
+    width:310px;
+    transition: 0.2s;
 	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
+	border: 3px solid rgba(0,99,65,1);
+	cursor: pointer;
+
 }
 
 .login input[type=button]:focus{
@@ -164,9 +177,9 @@ body{
 }
 
 ::-webkit-input-placeholder{
-   color: rgba(255,255,255,1);
+   color: rgba(0,0,0,1);
 }
 
 ::-moz-input-placeholder{
-   color: rgba(255,255,255,0.9);
+   color: rgba(0,0,0,0.9);
 }
