@@ -96,6 +96,12 @@ body{
 	font-size: 16px;
 	font-weight: 400;
 	padding: 5px;
+	margin: auto;
+}
+.login input[type=text]:hover,.login input[type=password]:hover{
+    transition: 0.25s;
+	width: 300px;
+	border-color: rgba(0,99,65,1);
 }
 
 .login input[type=password]{
@@ -117,7 +123,6 @@ body{
 	height: 35px;
 	background: black;
 	border: 1px solid white;
-	cursor: pointer;
 	border-radius: 999px;
 	color: rgba(255,255,255,0.7);
 	font-family: 'Exo', sans-serif;
@@ -125,6 +130,14 @@ body{
 	font-weight: 400;
 	padding: 6px;
 	margin-top: 10px;
+
+}
+.login input[type=submit]:hover{
+    transition: 0.30s;
+	background: rgba(0,99,65,1);
+	cursor: pointer;
+	color: rgba(0,0,0,0.7);
+	border-color: black;
 
 }
 

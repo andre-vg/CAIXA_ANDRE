@@ -22,8 +22,8 @@ def login():
     print(usuario)
     print(senha)
 
-    cnx = mysql.connector.connect(user='qZAqwXH0Wi', password='O387pnW1tb',
-                                  host='remotemysql.com',
+    cnx = mysql.connector.connect(user='root', password='',
+                                  host='127.0.0.1',
                                   database='qZAqwXH0Wi')
 
     print("Conectado=", cnx.is_connected())
@@ -66,7 +66,7 @@ def incluir():
     cpf = request.form['cpf']
 
     # Incluindo pessoa no SGBD
-    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    mysql = sql.SQL("root", "", "qZAqwXH0Wi")
     comando = "INSERT INTO tb_cliente(nme_cliente, endereco_cliente, qtd_token, CPF) VALUES (%s, %s, %s, %s);"
     if mysql.executar(comando, [nme, end, token, cpf]):
         msg = "Cliente " + nme + " cadastrado(a) com sucesso!"
@@ -111,13 +111,13 @@ def buscar():
     parte = request.form['parte']
 
     # Incluindo pessoa no SGBD
-    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    mysql = sql.SQL("root", "", "qZAqwXH0Wi")
     comando = "SELECT * FROM tb_cliente WHERE CPF LIKE CONCAT('%', %s, '%') ORDER BY CPF;"
     cs = mysql.consultar(comando, [parte])
     print(cs)
     global dados
     dados = cs.fetchone()
-    if dados == None:
+    if dados is None:
         saida = ""
     else:
         saida = str(dados[0]) + ',' + dados[1] + ',' + dados[2] + ',' + str(dados[3]) + ',' + dados[4]
@@ -146,7 +146,7 @@ def teste():
     idt_agua = 3
     idt_cookie = 4
 
-    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    mysql = sql.SQL("root", "", "qZAqwXH0Wi")
     comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
     mysql.executar(comando, [])
     comando = "INSERT INTO tb_pedido (cod_funcionario, cod_cliente, DataHora, vlr_total, vlr_total_token) " \
@@ -203,7 +203,7 @@ def token():
                                vlr_espresso=vlr_espresso,
                                vlr_agua=vlr_agua, vlr_total=vlr_total, vlr_token=vlr_token, vlr_cookie=vlr_cookie)
     else:
-        mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+        mysql = sql.SQL("root", "", "qZAqwXH0Wi")
         comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
         mysql.executar(comando, [])
         comando = "INSERT INTO tb_pedido (cod_funcionario, cod_cliente, DataHora, vlr_total, vlr_total_token) " \
@@ -279,7 +279,7 @@ def relatorio():
         nme_mes = str("Dezembro")
         print(nme_mes)
 
-    mysql = sql.SQL("qZAqwXH0Wi", "O387pnW1tb", "qZAqwXH0Wi")
+    mysql = sql.SQL("root", "", "qZAqwXH0Wi")
     comando = "/*!40103 SET TIME_ZONE='-03:00' */;"
     mysql.executar(comando, [])
 

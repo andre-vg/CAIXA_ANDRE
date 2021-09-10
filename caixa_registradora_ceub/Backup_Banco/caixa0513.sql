@@ -1,160 +1,97 @@
--- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
---
--- Host: remotemysql.com    Database: qZAqwXH0Wi
--- ------------------------------------------------------
--- Server version	8.0.13-4
+-- MySQL Workbench Forward Engineering
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
---
--- Table structure for table `ta_pedido_produto`
---
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema qzaqwxh0wi
+-- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `ta_pedido_produto`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ta_pedido_produto` (
-  `idt_pedido` int(11) NOT NULL,
-  `idt_produto` int(11) NOT NULL,
-  `qtd_produto` int(11) NOT NULL,
-  PRIMARY KEY (`idt_pedido`,`idt_produto`),
-  KEY `fk_tb_pedido_has_tb_produto_tb_produto1` (`idt_produto`),
-  CONSTRAINT `fk_tb_pedido_has_tb_produto_tb_pedido1` FOREIGN KEY (`idt_pedido`) REFERENCES `tb_pedido` (`idt_pedido`),
-  CONSTRAINT `fk_tb_pedido_has_tb_produto_tb_produto1` FOREIGN KEY (`idt_produto`) REFERENCES `tb_produto` (`idt_produto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- -----------------------------------------------------
+-- Schema qzaqwxh0wi
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `qzaqwxh0wi` DEFAULT CHARACTER SET latin1 ;
+USE `qzaqwxh0wi` ;
 
---
--- Dumping data for table `ta_pedido_produto`
---
+-- -----------------------------------------------------
+-- Table `qzaqwxh0wi`.`ta_pedido_produto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `qzaqwxh0wi`.`ta_pedido_produto` (
+  `cod_pedido` INT(11) NOT NULL,
+  `cod_produto` INT(11) NOT NULL,
+  `qtd_produto` INT(11) NOT NULL,
+  PRIMARY KEY (`cod_pedido`, `cod_produto`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
-LOCK TABLES `ta_pedido_produto` WRITE;
-/*!40000 ALTER TABLE `ta_pedido_produto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ta_pedido_produto` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `tb_cliente`
---
+-- -----------------------------------------------------
+-- Table `qzaqwxh0wi`.`tb_cliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `qzaqwxh0wi`.`tb_cliente` (
+  `idt_cliente` INT(11) NOT NULL AUTO_INCREMENT,
+  `nme_cliente` VARCHAR(45) NOT NULL,
+  `endereco_cliente` VARCHAR(100) NOT NULL,
+  `qtd_token` INT(11) NULL DEFAULT NULL,
+  `CPF` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`idt_cliente`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
-DROP TABLE IF EXISTS `tb_cliente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tb_cliente` (
-  `idt_cliente` int(11) NOT NULL AUTO_INCREMENT,
-  `nme_cliente` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `endereco_cliente` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `qtd_token` int(11) DEFAULT NULL,
-  `numero_cliente` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `CPF` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idt_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `tb_cliente`
---
+-- -----------------------------------------------------
+-- Table `qzaqwxh0wi`.`tb_funcionario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `qzaqwxh0wi`.`tb_funcionario` (
+  `idt_funcionario` INT(11) NOT NULL AUTO_INCREMENT,
+  `nme_funcionario` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idt_funcionario`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
-LOCK TABLES `tb_cliente` WRITE;
-/*!40000 ALTER TABLE `tb_cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_cliente` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `tb_funcionario`
---
+-- -----------------------------------------------------
+-- Table `qzaqwxh0wi`.`tb_pedido`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `qzaqwxh0wi`.`tb_pedido` (
+  `idt_pedido` INT(11) NOT NULL AUTO_INCREMENT,
+  `cod_funcionario` INT(11) NOT NULL,
+  `cod_cliente` INT(11) NOT NULL,
+  `DataHora` DATETIME NOT NULL,
+  `vlr_total` DECIMAL(8,2) NOT NULL,
+  `vlr_total_token` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`idt_pedido`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
-DROP TABLE IF EXISTS `tb_funcionario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tb_funcionario` (
-  `idt_funcionario` int(11) NOT NULL AUTO_INCREMENT,
-  `nme_funcionario` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idt_funcionario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `tb_funcionario`
---
+-- -----------------------------------------------------
+-- Table `qzaqwxh0wi`.`tb_produto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `qzaqwxh0wi`.`tb_produto` (
+  `idt_produto` INT(11) NOT NULL AUTO_INCREMENT,
+  `nme_produto` VARCHAR(45) NOT NULL,
+  `vlr_produto` DECIMAL(8,2) NULL DEFAULT NULL,
+  `vlr_produto_token` INT(11) NOT NULL,
+  PRIMARY KEY (`idt_produto`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
-LOCK TABLES `tb_funcionario` WRITE;
-/*!40000 ALTER TABLE `tb_funcionario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_funcionario` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `tb_pedido`
---
-
-DROP TABLE IF EXISTS `tb_pedido`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tb_pedido` (
-  `idt_pedido` int(11) NOT NULL AUTO_INCREMENT,
-  `cod_funcionario` int(11) NOT NULL,
-  `cod_cliente` int(11) NOT NULL,
-  `DataHora` datetime NOT NULL,
-  `vlr_total` decimal(8,2) NOT NULL,
-  `vlr_total_token` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idt_pedido`),
-  KEY `fk_tb_pedido_tb_cliente1` (`cod_cliente`),
-  KEY `fk_tb_pedido_tb_funcionario1` (`cod_funcionario`),
-  CONSTRAINT `fk_tb_pedido_tb_cliente1` FOREIGN KEY (`cod_cliente`) REFERENCES `tb_cliente` (`idt_cliente`),
-  CONSTRAINT `fk_tb_pedido_tb_funcionario1` FOREIGN KEY (`cod_funcionario`) REFERENCES `tb_funcionario` (`idt_funcionario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tb_pedido`
---
-
-LOCK TABLES `tb_pedido` WRITE;
-/*!40000 ALTER TABLE `tb_pedido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_pedido` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tb_produto`
---
-
-DROP TABLE IF EXISTS `tb_produto`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tb_produto` (
-  `idt_produto` int(11) NOT NULL AUTO_INCREMENT,
-  `nme_produto` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `vlr_produto` decimal(8,2) DEFAULT NULL,
-  `vlr_produto_token` int(11) NOT NULL,
-  PRIMARY KEY (`idt_produto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tb_produto`
---
-
-LOCK TABLES `tb_produto` WRITE;
-/*!40000 ALTER TABLE `tb_produto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_produto` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2021-05-13 20:51:37
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
